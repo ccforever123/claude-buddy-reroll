@@ -1,0 +1,83 @@
+#!/usr/bin/env bun
+/**
+ * Buddy Auth 脚本 - Claude Code Auth Token 替换工具
+ *
+ * 使用方式: bun buddy-auth.js
+ */
+
+import { readFileSync, writeFileSync } from "fs";
+import { join } from "path";
+import { homedir } from "os";
+import * as readline from "readline";
+
+// ============ 配置操作 ============
+function getConfigPath() {
+  return join(homedir(), ".claude.json");
+}
+
+function readConfig() {
+  try {
+    return JSON.parse(readFileSync(getConfigPath(), "utf-8"));
+  } catch {
+    return {};
+  }
+}
+
+function writeConfig(config) {
+  writeFileSync(getConfigPath(), JSON.stringify(config, null, 2), "utf-8");
+}
+
+// ============ 交互式界面 ============
+function ask(question) {
+  return new Promise(resolve => {
+    process.stdout.write(question);
+    const rl = readline.createInterface({
+      input: process.stdin,
+      output: process.stdout
+    });
+    rl.on('line', answer => {
+      rl.close();
+      resolve(answer);
+    });
+  });
+}
+
+// ============ 主程序 ============
+async function main() {
+  console.log("\n========================================");
+  console.log("     🔑 Buddy Auth - Token 替换工具     ");
+  console.log("========================================\n");
+
+  const config = readConfig();
+  const currentToken = config.CLAUDE_CODE_OAUTH_TOKEN || "";
+
+  console.log(`📁 配置文件: ${getConfigPath()}`);
+  console.log(`\n当前 Token: ${currentToken ? currentToken.substring(0, 20) + "..." : "(空)"}`);
+  console.log("");
+
+  let tokenInput = await ask("请输入新的 CLAUDE_CODE_OAUTH_TOKEN (直接回车保留当前): ");
+  tokenInput = tokenInput.trim();
+
+  if (tokenInput === "") {
+    console.log("\n已取消操作，未修改 Token。");
+    return;
+  }
+
+  // 移除旧字段
+  delete config.CLAUDE_CODE_OAUTH_TOKEN;
+  delete config.accountUuid;
+  delete config.companion;
+  delete config.companionMuted;
+  delete config.userID;
+
+  // 设置新 Token
+  config.CLAUDE_CODE_OAUTH_TOKEN = tokenInput;
+
+  writeConfig(config);
+
+  console.log("\n✅ Token 已更新!");
+  console.log(`   新 Token: ${tokenInput.substring(0, 20)}...`);
+  console.log("\n💡 请重启 Claude Code 使配置生效。");
+}
+
+main();
