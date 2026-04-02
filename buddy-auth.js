@@ -5,6 +5,8 @@
  * 使用方式: bun buddy-auth.js
  */
 
+const VERSION = "1.0.0";
+
 import { readFileSync, writeFileSync } from "fs";
 import { join } from "path";
 import { homedir } from "os";
@@ -45,7 +47,7 @@ function ask(question) {
 // ============ 主程序 ============
 async function main() {
   console.log("\n========================================");
-  console.log("     🔑 松鼠的AI助手 | Auth Token 替换工具     ");
+  console.log(`     🔑 松鼠的AI助手 | Auth Token 替换工具 v${VERSION}     `);
   console.log("========================================\n");
 
   const config = readConfig();

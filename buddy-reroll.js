@@ -7,6 +7,8 @@
  * 或直接运行 (需要 bun 环境)
  */
 
+const VERSION = "1.0.0";
+
 import { randomBytes } from "crypto";
 import { readFileSync, writeFileSync } from "fs";
 import { join } from "path";
@@ -139,7 +141,7 @@ function printRarity() {
 // ============ 主程序 ============
 async function main() {
   console.log("\n========================================");
-  console.log("     🎮 松鼠的AI助手 | Claude Buddy Reroll     ");
+  console.log(`     🎮 松鼠的AI助手 | Claude Buddy Reroll v${VERSION}     `);
   console.log("========================================\n");
 
   // 选择物种
