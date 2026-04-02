@@ -337,6 +337,9 @@ async function main() {
       break;
     }
   }
+
+  // 防止窗口关闭，等待用户确认
+  await ask("\n按回车键退出...");
 }
 
 main();
