@@ -1,6 +1,6 @@
 #!/usr/bin/env bun
 /**
- * Buddy Auth 脚本 - Claude Code Auth Token 替换工具
+ * 松鼠的AI助手 | Auth Token 替换工具
  *
  * 使用方式: bun buddy-auth.js
  */
@@ -45,7 +45,7 @@ function ask(question) {
 // ============ 主程序 ============
 async function main() {
   console.log("\n========================================");
-  console.log("     🔑 Buddy Auth - Token 替换工具     ");
+  console.log("     🔑 松鼠的AI助手 | Auth Token 替换工具     ");
   console.log("========================================\n");
 
   const config = readConfig();

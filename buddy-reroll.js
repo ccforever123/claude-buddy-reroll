@@ -1,6 +1,7 @@
 #!/usr/bin/env bun
 /**
- * Buddy Reroll Script - Claude Code Buddy 宠物刷取工具
+ * 松鼠的AI助手 | Claude Buddy Reroll
+ * Claude Code Buddy 宠物刷取工具
  *
  * 使用方式: bun buddy-reroll.js
  * 或直接运行 (需要 bun 环境)
@@ -138,7 +139,7 @@ function printRarity() {
 // ============ 主程序 ============
 async function main() {
   console.log("\n========================================");
-  console.log("     🎮 Buddy 刷宠物 - 交互式引导     ");
+  console.log("     🎮 松鼠的AI助手 | Claude Buddy Reroll     ");
   console.log("========================================\n");
 
   // 选择物种
