@@ -8,6 +8,12 @@
 const VERSION = "1.0.0";
 
 import { readFileSync, writeFileSync } from "fs";
+
+function centerLine(text, width) {
+  const pad = Math.max(0, width - [...text].reduce((n, c) => n + (c.charCodeAt(0) > 127 ? 2 : 1), 0));
+  const left = Math.floor(pad / 2);
+  return " ".repeat(left) + text + " ".repeat(pad - left);
+}
 import { join } from "path";
 import { homedir } from "os";
 import * as readline from "readline";
@@ -46,9 +52,12 @@ function ask(question) {
 
 // ============ 主程序 ============
 async function main() {
-  console.log("\n========================================");
-  console.log(`     🔑 松鼠的AI助手 | Auth Token 替换工具 v${VERSION}     `);
-  console.log("========================================\n");
+  const W = 44;
+  const title = `🔑 松鼠的AI助手 | Auth Token 替换工具`;
+  console.log("\n" + "=".repeat(W));
+  console.log(centerLine(title, W));
+  console.log(centerLine(` v${VERSION} `, W));
+  console.log("=".repeat(W) + "\n");
 
   const config = readConfig();
   const currentToken = config.CLAUDE_CODE_OAUTH_TOKEN || "";

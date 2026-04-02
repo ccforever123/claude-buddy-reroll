@@ -108,6 +108,12 @@ function writeConfig(userID) {
 }
 
 // ============ 交互式界面 ============
+function centerLine(text, width) {
+  const pad = Math.max(0, width - [...text].reduce((n, c) => n + (c.charCodeAt(0) > 127 ? 2 : 1), 0));
+  const left = Math.floor(pad / 2);
+  return " ".repeat(left) + text + " ".repeat(pad - left);
+}
+
 function ask(question) {
   return new Promise(resolve => {
     process.stdout.write(question);
@@ -140,9 +146,12 @@ function printRarity() {
 
 // ============ 主程序 ============
 async function main() {
-  console.log("\n========================================");
-  console.log(`     🎮 松鼠的AI助手 | Claude Buddy Reroll v${VERSION}     `);
-  console.log("========================================\n");
+  const W = 44;
+  const title = `🎮 松鼠的AI助手 | Claude Buddy Reroll`;
+  console.log("\n" + "=".repeat(W));
+  console.log(centerLine(title, W));
+  console.log(centerLine(` v${VERSION} `, W));
+  console.log("=".repeat(W) + "\n");
 
   // 选择物种
   printSpecies();
