@@ -5,7 +5,7 @@
  * 使用方式: bun buddy-auth.js
  */
 
-const VERSION = "1.0.0";
+const VERSION = "1.0.1";
 
 import { readFileSync, writeFileSync } from "fs";
 

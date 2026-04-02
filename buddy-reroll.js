@@ -7,7 +7,7 @@
  * 或直接运行 (需要 bun 环境)
  */
 
-const VERSION = "1.0.0";
+const VERSION = "1.0.1";
 
 import { randomBytes } from "crypto";
 import { readFileSync, writeFileSync } from "fs";
@@ -32,7 +32,7 @@ const SPECIES = [
 ];
 const SPECIES_ZH = [
   "鸭子", "鹅", "果冻", "猫", "龙", "章鱼", "猫头鹰", "企鹅",
-  "乌龟", "蜗牛", "幽灵", "美西螈", "水豚", "仙人掌", "机器人",
+  "乌龟", "蜗牛", "幽灵", "美西螈", "水豚/卡皮巴拉", "仙人掌", "机器人",
   "兔子", "蘑菇", "胖墩"
 ];
 const SPECIES_EMOJI = [
