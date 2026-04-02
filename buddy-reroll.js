@@ -7,7 +7,7 @@
  * 或直接运行 (需要 bun 环境)
  */
 
-const VERSION = "1.0.1";
+const VERSION = "1.0.2";
 
 import { randomBytes } from "crypto";
 import { readFileSync, writeFileSync } from "fs";
