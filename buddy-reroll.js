@@ -7,7 +7,7 @@
  * 或直接运行 (需要 bun 环境)
  */
 
-const VERSION = "1.0.2";
+const VERSION = "1.0.3";
 
 import { randomBytes } from "crypto";
 import { readFileSync, writeFileSync } from "fs";
@@ -102,6 +102,10 @@ function writeConfig(userID) {
   const config = readConfig();
   delete config.companion;
   delete config.companionMuted;
+  // 删除 accountUuid，让 /buddy 使用自定义 userID 而非账户 UUID
+  if (config.oauthAccount) {
+    delete config.oauthAccount.accountUuid;
+  }
   config.userID = userID.toLowerCase();
   writeFileSync(getConfigPath(), JSON.stringify(config, null, 2), "utf-8");
   console.log(`\n✅ 配置已更新: ${getConfigPath()}`);
